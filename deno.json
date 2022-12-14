@@ -7,14 +7,17 @@
     "strict": true
   },
 	"tasks": {
-		"day1": "deno run --allow-read ./src/day1/day1.ts",
-		"day1-dev": "denon run --allow-read ./src/day1/day1.ts",
-		"day2": "deno run --allow-read ./src/day2/day2.ts",
-		"day2-dev": "denon run --allow-read ./src/day2/day2.ts",
-		"day3": "deno run --allow-read ./src/day3/day3.ts",
-		"day3-dev": "denon run --allow-read ./src/day3/day3.ts",
-		"day4": "deno run --allow-read ./src/day4/day4.ts",
-		"day4-dev": "denon run --allow-read ./src/day4/day4.ts"
+		"dl": "./src/scripts/downloadInput.ts",
+		"bp": "./src/scripts/startDay.ts",
+		"start": "deno task bp && deno task dl",
+		"day1": "deno run --allow-read ./src/day01_calorie_counting/day1.ts",
+		"day1-dev": "denon run --allow-read ./src/day01_calorie_counting/day1.ts",
+		"day2": "deno run --allow-read ./src/day02_rock_paper_scissors/day2.ts",
+		"day2-dev": "denon run --allow-read ./src/day02_rock_paper_scissors/day2.ts",
+		"day3": "deno run --allow-read ./src/day03_rucksack_organizing/day3.ts",
+		"day3-dev": "denon run --allow-read ./src/day03_rucksack_organizingday3.ts",
+		"day4": "deno run --allow-read ./src/day04_camp_cleanup/day4.ts",
+		"day4-dev": "denon run --allow-read ./src/day04_camp_cleanupday4.ts"
 	},
   "lint": {
     "files": {

@@ -30,7 +30,6 @@ const doesRangeOverlap = (first: number[], second: number[]) => {
 	return false
 }
 
-
 const getContainedCount = (pairs: number[][][]): number => {
 	return pairs.map(pair => isRangeContainedBy(pair[0], pair[1])).filter(p => p).length
 }
