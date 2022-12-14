@@ -12,7 +12,9 @@
 		"day2": "deno run --allow-read ./src/day2/day2.ts",
 		"day2-dev": "denon run --allow-read ./src/day2/day2.ts",
 		"day3": "deno run --allow-read ./src/day3/day3.ts",
-		"day3-dev": "denon run --allow-read ./src/day3/day3.ts"
+		"day3-dev": "denon run --allow-read ./src/day3/day3.ts",
+		"day4": "deno run --allow-read ./src/day4/day4.ts",
+		"day4-dev": "denon run --allow-read ./src/day4/day4.ts"
 	},
   "lint": {
     "files": {
