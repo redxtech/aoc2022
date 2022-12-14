@@ -6,8 +6,15 @@ enum RPS {
 	SCISSORS
 }
 
+enum OUTCOME {
+	LOSE = 'X',
+	DRAW = 'Y',
+	WIN = 'Z'
+}
+
 type ELF_RPS = 'A' | 'B' | 'C'
 type ME_RPS = 'X' | 'Y' | 'Z'
+type OUTCOME_CODE = ME_RPS
 
 const getChoice = (choice: ELF_RPS | ME_RPS): RPS => {
 	switch (choice) {
@@ -70,13 +77,73 @@ const getScores = (games: RPS[][]): number[] => {
 
 const getTotalScore = (scores: number[]): number => scores.reduce(reducerSum)
 
+const getRequiredChoice = (elf: ELF_RPS, outcome: OUTCOME_CODE): RPS => {
+	if (outcome === OUTCOME.WIN) {
+		switch (getChoice(elf)) {
+			case RPS.ROCK:
+				return RPS.PAPER
+			case RPS.PAPER:
+				return RPS.SCISSORS
+			case RPS.SCISSORS:
+				return RPS.ROCK
+		}
+	} else if (outcome === OUTCOME.LOSE) {
+		switch (getChoice(elf)) {
+			case RPS.ROCK:
+				return RPS.SCISSORS
+			case RPS.PAPER:
+				return RPS.ROCK
+			case RPS.SCISSORS:
+				return RPS.PAPER
+		}
+	} else {
+		return getChoice(elf)
+	}
+}
+
+const getGamesV2 = (games: string[]): Array<Array<ELF_RPS | OUTCOME>> => {
+	const convertedGames = []
+	const allGames = games.filter(l => l.length !== 0)
+
+	for (const game of allGames) {
+		const choices = game.split(' ')
+		const elf = choices[0] as ELF_RPS
+		const outcome = choices[1] as OUTCOME
+
+		convertedGames.push([elf, outcome])
+	}
+
+	return convertedGames
+}
+
+const getScoreV2 = (elfChoice: ELF_RPS, outcome: OUTCOME_CODE): number => {
+	let score: number = getRequiredChoice(elfChoice, outcome)
+
+	if (outcome === OUTCOME.WIN) {
+		score += 6
+	} else if (outcome === OUTCOME.DRAW) {
+		score += 3
+	}
+
+	return score
+}
+
+const getScoresV2 = (games: Array<Array<ELF_RPS | OUTCOME>>): number[] => {
+	return games.map(game => getScoreV2(game[0] as ELF_RPS, game[1] as OUTCOME))
+}
+
 export const dayTwo = () => {
 	const input = getInputLines(2)
+
 	const games = getGames(input)
 	const scores = getScores(games)
 	const score = getTotalScore(scores)
+	console.log(`Total Score Pt 1: ${score}`)
 
-	console.log(`Total Score: ${score}`)
+	const games2 = getGamesV2(input)
+	const scores2 = getScoresV2(games2)
+	const score2 = getTotalScore(scores2)
+	console.log(`Total Score Pt 2: ${score2}`)
 }
 
 dayTwo()
