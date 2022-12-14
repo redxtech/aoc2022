@@ -1,4 +1,4 @@
-import { getInputLines } from "../utils.ts"
+import { getInputLines, reducerSum } from "../utils.ts"
 
 const splitFile = (lines: string[]): string[][] => {
 	const elves: string[][] = []
@@ -19,9 +19,7 @@ const splitFile = (lines: string[]): string[][] => {
 const getElfTotals = (elves: string[][]): Array<number> => {
 	return elves.map((elf: string[]): number => {
 		return elf.map(e => parseInt(e))
-		.reduce((sum, val) => {
-			return sum + val
-		})
+		.reduce(reducerSum)
 	})
 }
 
@@ -44,7 +42,7 @@ const findTopThreeElves = (elves: number[]): number => {
 		}
 	})
 
-	return top.reduce((sum, val) => sum + val)
+	return top.reduce(reducerSum)
 }
 
 export const dayOne = () => {

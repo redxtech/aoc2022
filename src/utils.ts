@@ -7,3 +7,6 @@ export const getInput = (day: number): string => {
 export const getInputLines = (day: number): string[] => {
 	return getInput(day).split('\n')
 }
+
+export const reducerSum = (sum: number, val: number): number => sum + val
+
