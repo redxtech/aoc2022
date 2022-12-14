@@ -19,8 +19,24 @@ const isRangeContainedBy = (first: number[], second: number[]) => {
 	return false
 }
 
+const doesRangeOverlap = (first: number[], second: number[]) => {
+	if ((first[0] >= second[0] && first[0] <= second[1]) || (first[1] >= second[0] && first[1] <= second[1])) {
+		return true
+	// } else if ((first[0] >= second[0] && first[0] <= second[1]) || (first[1] >= second[0] && first[1] <= second[1])) {
+	} else if ((second[0] >= first[0] && second[0] <= first[1]) || (second[1] >= first[0] && second[1] <= first[1])) {
+		return true
+	}
+
+	return false
+}
+
+
 const getContainedCount = (pairs: number[][][]): number => {
 	return pairs.map(pair => isRangeContainedBy(pair[0], pair[1])).filter(p => p).length
+}
+
+const getOverlapCount = (pairs: number[][][]): number => {
+	return pairs.map(pair => doesRangeOverlap(pair[0], pair[1])).filter(p => p).length
 }
 
 export const day4 = () => {
@@ -28,8 +44,10 @@ export const day4 = () => {
 	const elfPairs = getPairRanges(input)
 
 	const containedCount = getContainedCount(elfPairs)
+	const overlapCount = getOverlapCount(elfPairs)
 
 	console.log(`Total fully contained: ${containedCount}`)
+	console.log(`Total overlaps: ${overlapCount}`)
 }
 
 day4()
