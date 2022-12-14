@@ -7,3 +7,4 @@ all challenges are written using `typescript` for `deno`.
 ## running
 you should be able to run a day's code with `deno task day-<x>`, where `<x>` is the day you want to run.
 
+use `deno task day-<x>-dev` to auto rerun when saving files.

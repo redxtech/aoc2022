@@ -6,6 +6,10 @@
     "noUnusedParameters": true,
     "strict": true
   },
+	"tasks": {
+		"day1": "deno run --allow-read ./src/day1/main.ts",
+		"day1-dev": "denon run --allow-read ./src/day1/main.ts"
+	},
   "lint": {
     "files": {
       "include": ["src/"],
