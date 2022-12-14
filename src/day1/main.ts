@@ -1,6 +1,4 @@
-const readFile = async (): Promise<Array<string>> => {
-	return (await Deno.readTextFile(Deno.cwd() + '/src/day1/input.txt')).split('\n')
-}
+import { getInputLines } from "../utils.ts"
 
 const splitFile = (lines: string[]): string[][] => {
 	const elves: string[][] = []
@@ -46,13 +44,11 @@ const findTopThreeElves = (elves: number[]): number => {
 		}
 	})
 
-	console.log(top)
-
 	return top.reduce((sum, val) => sum + val)
 }
 
-const main = async () => {
-	const input = await readFile()
+export const dayOne = () => {
+	const input = getInputLines(1)
 	const rawElfData = splitFile(input)
 	const totalElfData = getElfTotals(rawElfData)
 
@@ -63,5 +59,5 @@ const main = async () => {
 	console.log(`Day 1 Pt. 2 Solution: ${topThreeElves}`)
 }
 
-main()
+dayOne()
 
